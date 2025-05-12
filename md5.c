@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <openssl/evp.h>
+#include <string.h>
+
 
 char *md5(const char *str, int length) {
     EVP_MD_CTX *mdctx;
@@ -35,4 +37,11 @@ char *md5(const char *str, int length) {
     hexdigest[md5_digest_len * 2] = '\0';
 
     return hexdigest;
+    
+}
+
+void md5String(char *input, char *output) {
+    char *result = md5(input, strlen(input));
+    strcpy(output, result);
+    free(result);
 }
